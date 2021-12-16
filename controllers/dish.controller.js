@@ -11,7 +11,24 @@ const DishController = {
         const dish = await DishService.findById(dishId);
         res.status(200).send(dish);
     },
-// pq pas faire un new patati patata + save après
+
+    findByKeyWord: async (req, res, next) => {
+        const query = req.query.keyword;
+    
+        try {
+          const dishes = await DishService.findByKeyWord(query);
+          if (dishes) {
+            res.status(200).send(dishes);
+          } else {
+            res.status(404).send("dish not found");
+          }
+        } catch (error) {
+          console.log(error);
+          res.status(500).send();
+        }
+      },
+    
+
     create: async (req, res, next) => {
         const dish = req.body;
         await DishService.create(dish);

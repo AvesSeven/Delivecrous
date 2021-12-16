@@ -9,7 +9,7 @@ const LoginController = {
         const token = await login(userName, password);
   
         if (token) {
-          res.status(200).send(token);
+          res.status(200).send({token});
         } else {
           res.status(400).send("Invalid credentials");
         }

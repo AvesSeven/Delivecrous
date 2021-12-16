@@ -9,6 +9,18 @@ const DishRepository = {
         return db.findById(id);
     },
 
+    findByName: (query) => {
+        return db.find({ name: { $regex: '.*' + query + '.*' } });
+    },
+
+    findByDescription: (query) => {
+        return db.find({ description: { $regex: '.*' + query + '.*' } });
+    },
+
+    findByAllergens: (query) => {
+        return db.find({ allergens: { $regex: '.*' + query + '.*' } });
+    },
+
     create: (dish) => {
         return new db(dish).save();
     },

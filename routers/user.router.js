@@ -4,8 +4,22 @@ const UserController = require("../controllers/user.controller.js");
 const { validate } = require("express-validation");
 const UserValidator = require("../validators/user.validators.js");
 
+const API_USER_PARAM = `/:id`;
+
+UserRouter
+    .route("/")
+    .get(UserController.findAll)
+    .post(validate(UserValidator.validateCreate), UserController.create);
+
 UserRouter
     .route(API_USER_PARAM)
-    .post(UserController.create);
+    .get(UserController.findById)
+    .put(UserController.update)
+    .delete(UserController.delete);
 
-module.exports = DishRouter;
+module.exports = UserRouter;
+
+// UserRouter
+//     .route("/cart")
+//     .get(UserController.getCart)
+//     .put(validate(UserController.updateCart);

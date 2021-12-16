@@ -8,6 +8,7 @@ const AuthenticationService = {
     if (user) {
       return jwt.sign(
         {
+          _id: user._id,
           username: user.username,
         },
         SECRET,

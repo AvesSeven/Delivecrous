@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
 const {checkToken} = require("../services/authentication.service");
 
-class AuthenticationMiddleware {
+const AuthenticationMiddleware = {
 
-  async verifyToken(req, res, next) {
+  verifyToken: async (req, res, next) => {
     const usertoken = req.headers.authorization;
 
     if (!usertoken) {
-      return res.status(401).send("A token is required for authentication");
+      return res.status(401).send({error: "A token is required for authentication"});
     }
     try {
       const token = usertoken.replace("Bearer ", "");
