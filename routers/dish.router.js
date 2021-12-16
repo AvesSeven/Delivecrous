@@ -8,8 +8,6 @@ const AuthencationMiddleware = require("../middlewares/authentication.middleware
 const API_DISH_PARAM = `/:id`;
 const API_DISH_QUERY = `/search`;
 
-//findbykeyword
-
 DishRouter
     .route("/")
     .get((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), DishController.findAll)

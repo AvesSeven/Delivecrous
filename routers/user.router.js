@@ -18,8 +18,3 @@ UserRouter
     .delete(UserController.delete);
 
 module.exports = UserRouter;
-
-// UserRouter
-//     .route("/cart")
-//     .get(UserController.getCart)
-//     .put(validate(UserController.updateCart);

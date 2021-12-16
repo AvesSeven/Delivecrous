@@ -8,19 +8,29 @@ const CartService = {
 
     findUserCartById: async(id, userId) => {
         const cart = await CartRepository.findUserCartById(id);
-        return cart.idUser == userId ? cart : null;
+        
+        if(!(cart.idUser == userId)) {
+            throw new Error("Id user not found");
+        }
+        
+         return cart;
     },
 
     createUserCart: async (cart) => {
         await CartRepository.createUserCart(cart);
     },
 
-    updateUserCart: async (id, cartInfo) => {
-        const userCart = await CartRepository.findUserCartById(id);
+    updateUserCart: async (cartId, cartInfo, userId) => {
+        const userCart = await CartRepository.findUserCartById(cartId);
 
         if(!userCart) {
             throw new Error("Cart not found");
         }
+
+        if(!(cart.idUser == userId)) {
+            throw new Error("Id user not found");
+        }
+        
 
         if(userCart.state == true) {
             throw new Error("Cart already validated");
@@ -66,15 +76,21 @@ const CartService = {
             }
         }
 
-        return await CartRepository.updateUserCart(id, userCart);
+        return await CartRepository.updateUserCart(cartId, userCart);
     },
 
-    deleteUserCart: async (id) => {
-        const cart = await CartRepository.findUserCartById(id);
+    deleteUserCart: async (cartId, userId) => {
+        const cart = await CartRepository.findUserCartById(cartId);
+        
         if(!cart) {
             throw Error("cart not found");
         }
-        return await CartRepository.deleteUserCart(id);
+
+        if(!(cart.idUser == userId)) {
+            throw new Error("Id user not found");
+        }
+
+        return await CartRepository.deleteUserCart(cartId);
     },
 
     deleteUserCarts: async (userId) => {

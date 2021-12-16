@@ -11,7 +11,7 @@ const API_CHECKOUT = `/:id/checkout`
 CartRouter
     .route("/")
     .get((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), CartController.findUserCarts)
-    .post((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), CartController.createUserCart);
+    .post((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next),  validate(CartValidator.validateCreateUserCart), CartController.createUserCart);
 
 CartRouter
     .route(API_USER_PARAM)

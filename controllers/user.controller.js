@@ -39,17 +39,6 @@ const UserController = {
             res.status(404).send({ message: `user with id - ${userId} not found`});
         }
     },
-
-    // getCart: async (req, res, next) => {
-    //     // TODO: Utiliser l'id de l'utilisateur (dans le jwt)
-    //     // TODO: Récuperer le Model Cart qui appartient à cet utilisateur => CartRepository.findByUserId
-    // },
-
-    // updateCart: async (req, res, next) => {
-    //     // TODO: Utiliser l'id de l'utilisateur (dans le jwt)
-    //     // TODO: Vérifier les id des dishes dans le panier
-    //     // TODO: Update le Model Cart qui appartient à cet utilisateur => CartRepository.updateByUserId
-    // },
 }
 
 module.exports = UserController;

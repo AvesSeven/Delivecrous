@@ -31,7 +31,7 @@ const CartController = {
 
         cartInfo.idUser = userId;
         try {
-            await CartService.updateUserCart(cartId, cartInfo);
+            await CartService.updateUserCart(cartId, cartInfo, userId);
             res.status(200).send({ message: "cart updated successfully"});
         } catch (error) {
             res.status(404).send({ message: `cart with id - ${cartId} not found`});

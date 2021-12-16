@@ -22,7 +22,6 @@ const CartRepository = {
     },
 
     deleteDishFromCart: (idCart, idDish) => {
-        console.log("=================")
         return db.updateMany({ _id:  idCart}, { "$pull": { "cart": { "idDish": idDish }}});
     },
 
