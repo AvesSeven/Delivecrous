@@ -10,12 +10,12 @@ const API_DISH_QUERY = `/search`;
 
 DishRouter
     .route("/")
-    .get((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), DishController.findAll)
-    .post((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), validate(DishValidator.validateCreate), DishController.create);
+    .get(DishController.findAll)
+    .post(validate(DishValidator.validateCreate), DishController.create);
 
 DishRouter
     .route(API_DISH_QUERY)
-    .get((req, res, next) => AuthencationMiddleware.verifyToken(req, res, next), DishController.findByKeyWord);  
+    .get(DishController.findByKeyWord);  
 
 DishRouter
     .route(API_DISH_PARAM)
